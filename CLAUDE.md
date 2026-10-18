@@ -43,7 +43,9 @@ QR version 3-H encoder/decoder). Lab pages may also load `../core.js` for the ca
 
 - Instrument panels are always dark (`--bezel`) in both themes. The page itself follows `prefers-color-scheme`.
 - Phone-first: check at 390 px wide with no horizontal scroll. Canvas text must not overlap at that width.
-- No network calls. Sensor and camera features process data on the device and say so on the page.
+- No network calls, except the anonymous GoatCounter visit count (the `visit-count` script in each page's
+  `<head>`; it does nothing off github.io). Sensor and camera features process data on the device and say so
+  on the page, and any page that talks about network use says the visit count is the only call.
 - Keep the prose accurate; cite sources in the page's reading list.
 
 ## Lab progress

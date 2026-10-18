@@ -28,7 +28,8 @@ design and build plan, and [`CLAUDE.md`](CLAUDE.md) explains how to advance one.
 | 09 | [`fingerprint/`](fingerprint/) | Your phone's sensor calibration errors as an ID (SensorID, 2019), on-device only | blueprint |
 | 10 | [`tearproof/`](tearproof/) | Split a secret across printable tags; any k of n rebuild it (Reed–Solomon / Shamir) | blueprint |
 
-No build step, no dependencies, no network calls. Every exhibit and Lab page lives in its own folder.
+No build step, no dependencies, and no network calls beyond an anonymous visit count
+([GoatCounter](https://www.goatcounter.com/), no cookies). Every exhibit and Lab page lives in its own folder.
 Exhibit pages share [`site.css`](site.css) and [`core.js`](core.js), and Lab pages share [`lab.css`](lab.css).
 Everything is served by GitHub Pages from `main`. The QR encoder/decoder
 (GF(256), Berlekamp–Massey, Forney), Gauss–Newton GPS solver, Kalman filter, and TCP/CoDel

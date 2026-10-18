@@ -5,6 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tear-Proof Secrets · Lab</title>
 <meta name="description" content="Split a password across printable tags so that any few of them rebuild it: Reed–Solomon erasure coding and Shamir's secret sharing, on paper.">
+<link rel="canonical" href="https://jkastl.github.io/tolerance/tearproof/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Apps and demos">
+<meta property="og:title" content="Tear-Proof Secrets · Lab">
+<meta property="og:description" content="Split a password across printable tags so that any few of them rebuild it: Reed–Solomon erasure coding and Shamir's secret sharing, on paper.">
+<meta property="og:url" content="https://jkastl.github.io/tolerance/tearproof/">
+<meta name="twitter:card" content="summary">
+<script id="visit-count">
+  // Anonymous visit count (GoatCounter, no cookies). Does nothing off github.io.
+  (function () {
+    if (!/\.github\.io$/.test(location.hostname)) return;
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://gc.zgo.at/count.v4.js";
+    s.integrity = "sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+";
+    s.crossOrigin = "anonymous";
+    s.setAttribute("data-goatcounter", "https://jkastl.goatcounter.com/count");
+    document.head.appendChild(s);
+  })();
+</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b0f14'/%3E%3Cg fill='%236ee7a0'%3E%3Crect x='12' y='14' width='16' height='16' rx='2'/%3E%3Crect x='36' y='14' width='16' height='16' rx='2'/%3E%3Crect x='24' y='36' width='16' height='16' rx='2'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="stylesheet" href="../lab.css">
 <style>
@@ -139,7 +159,7 @@
     <h2>Split a secret</h2>
     <div class="prose"><p>Type something, choose how many tags and how many it takes to rebuild, and print.
     Everything happens in this page: the randomness comes from your browser's <code>crypto.getRandomValues</code>,
-    and nothing is sent anywhere.</p></div>
+    and the secret is never sent anywhere.</p></div>
     <div class="panel" id="split">
       <div class="inrow">
         <label for="s-text">secret</label>
@@ -261,8 +281,8 @@
         disagree, and with two or more spares it outvotes the forgery and names it. SLIP-39, below, adds a digest
         of the secret so a wrong combination is caught even without a spare.</li>
         <li><strong>The moment of splitting.</strong> You're trusting this page's code, your browser, and your
-        printer queue while the secret is on screen. The page makes no network requests, so you can save it and
-        use it offline. The math above is short enough to check.</li>
+        printer queue while the secret is on screen. Apart from an anonymous visit count when it loads, the page
+        makes no network requests, so you can save it and use it offline. The math above is short enough to check.</li>
         <li><strong>Paper.</strong> Thermal receipts fade and inkjet runs when it gets wet. Use a laser printer, and
         since the QR codes are level Q, they still scan with about a quarter of each code scuffed or torn away.</li>
       </ul>

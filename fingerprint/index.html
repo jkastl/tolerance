@@ -5,6 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Your Phone's Fingerprint · Lab</title>
 <meta name="description" content="Your phone's motion sensors have tiny factory calibration errors, and those errors are an ID. A local-only demonstration of sensor calibration fingerprinting.">
+<link rel="canonical" href="https://jkastl.github.io/tolerance/fingerprint/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Apps and demos">
+<meta property="og:title" content="Your Phone's Fingerprint · Lab">
+<meta property="og:description" content="Your phone's motion sensors have tiny factory calibration errors, and those errors are an ID. A local-only demonstration of sensor calibration fingerprinting.">
+<meta property="og:url" content="https://jkastl.github.io/tolerance/fingerprint/">
+<meta name="twitter:card" content="summary">
+<script id="visit-count">
+  // Anonymous visit count (GoatCounter, no cookies). Does nothing off github.io.
+  (function () {
+    if (!/\.github\.io$/.test(location.hostname)) return;
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://gc.zgo.at/count.v4.js";
+    s.integrity = "sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+";
+    s.crossOrigin = "anonymous";
+    s.setAttribute("data-goatcounter", "https://jkastl.goatcounter.com/count");
+    document.head.appendChild(s);
+  })();
+</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b0f14'/%3E%3Cg fill='none' stroke='%2369c9ff' stroke-width='3'%3E%3Cpath d='M20 44 C18 30 24 18 34 18 C44 18 48 28 46 40'/%3E%3Cpath d='M27 48 C25 36 28 26 34 26 C40 26 40 34 39 44'/%3E%3Cpath d='M34 34 V50'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="stylesheet" href="../lab.css">
 <style>
@@ -122,7 +142,7 @@
       </div>
       <div class="guide" id="cap-guide" hidden><div class="now" id="cap-now"></div><div class="prog" id="cap-prog"></div></div>
       <div class="result" id="cap-result" hidden></div>
-      <div class="sinfo" id="cap-msg"><span class="local">runs on this device · nothing is sent</span><br>Waiting. Nothing is read until you press a button.</div>
+      <div class="sinfo" id="cap-msg"><span class="local">runs on this device · readings are never sent</span><br>Waiting. Nothing is read until you press a button.</div>
       <div class="plot"><canvas id="cap-cv" aria-label="Live trace of the accelerometer and gyroscope readings."></canvas></div>
       <div class="ros">
         <div class="ro"><div class="k">source</div><div class="v" id="cap-src">—</div></div>
@@ -348,8 +368,9 @@
       the phone's own, and the gyroscope showed no grid at all, which fits the noise Apple added in iOS 12.2.
       A current Chromium-based browser should show the browser's 0.1 grid, going by its source; that hasn't been
       tried on an Android phone yet. A grid of your phone's own would mean neither defense reached this page.</p>
-      <p><strong>Privacy.</strong> Everything runs on your device. The page makes no network requests, stores
-      nothing, and the fingerprint exists only in this tab until you close or reload it.</p>
+      <p><strong>Privacy.</strong> Everything runs on your device. Readings and the fingerprint are never sent
+      anywhere: the only network request is an anonymous visit count when the page loads (GoatCounter, no
+      cookies). The page stores nothing, and the fingerprint exists only in this tab until you close or reload it.</p>
     </div>
   </div>
 </section>
@@ -775,7 +796,7 @@ const capEls = {
   start: $('#cap-start'), sim: $('#cap-sim'), stop: $('#cap-stop'), msg: $('#cap-msg'),
   src: $('#cap-src'), n: $('#cap-n'), rate: $('#cap-rate'), still: $('#cap-still'), log: $('#cap-log'), cv: $('#cap-cv'),
 };
-const LOCAL = '<span class="local">runs on this device · nothing is sent</span><br>';
+const LOCAL = '<span class="local">runs on this device · readings are never sent</span><br>';
 function capMsg(html) { capEls.msg.innerHTML = LOCAL + html; }
 
 function ingest(s, intervalMs) {
